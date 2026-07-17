@@ -63,7 +63,9 @@
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="A maximum value of 99 is used">
                     </td>
                     <td>
                         <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
@@ -97,7 +99,9 @@
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="A maximum value of 99 is used">
                     </td>
                     <td>
                         <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
@@ -131,7 +135,9 @@
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="A maximum value of 99 is used">
                     </td>
                     <td>
                         <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
@@ -165,7 +171,9 @@
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="A maximum value of 99 is used">
                     </td>
                     <td>
                         <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
@@ -199,7 +207,9 @@
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="A maximum value of 99 is used">
                     </td>
                     <td>
                         <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
@@ -253,7 +263,9 @@
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="A maximum value of 99 is used">
                     </td>
                     <td>
                         <input type="text" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
@@ -266,6 +278,7 @@
     <script>
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        
         const heroCheckbox = document.getElementById('hero');
         const vanillaCheckbox = document.getElementById('vanilla');
         heroCheckbox.addEventListener('change', () => { updateHero(); updateAgility(); });
@@ -292,7 +305,8 @@
                 return 1;
             }
 
-            agility = Math.max(1, agility);
+            agility = Math.min(Math.max(1, agility), 99);
+            anchorAgility = Math.min(Math.max(1, anchorAgility), 99);
 
             return Math.max(1, Math.floor(anchorAgility * 5 / agility));
         }
