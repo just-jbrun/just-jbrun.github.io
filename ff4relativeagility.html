@@ -265,7 +265,7 @@
                     <td>
                         <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()" data-bs-toggle="popover"
                                 data-bs-trigger="hover"
-                                data-bs-content="A maximum value of 99 is used">
+                                data-bs-content="A theoretical maximum value of 255 is used for enemies">
                     </td>
                     <td>
                         <input type="text" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
@@ -304,9 +304,6 @@
             if (anchorAgility === 0) {
                 return 1;
             }
-
-            agility = Math.min(Math.max(1, agility), 99);
-            anchorAgility = Math.min(Math.max(1, anchorAgility), 99);
 
             return Math.max(1, Math.floor(anchorAgility * 5 / agility));
         }
@@ -385,14 +382,18 @@
                     continue;
                 }
 
-                if (i === 5 && agilityInputs[i].value.indexOf("..") !== -1) {
-                    let range = agilityInputs[i].value;
-                    let [min, max] = range.split("..").map(Number);
-                    let minRA = RA(min, anchorAgility);
-                    let maxRA = RA(max, anchorAgility);
-                    relativeAgilityInputs[i].value = (minRA === maxRA) ? maxRA : `${RA(max, anchorAgility)}..${RA(min, anchorAgility)}`;
+                if (i === 5) {
+                    if (agilityInputs[i].value.indexOf("..") !== -1) {
+                        let range = agilityInputs[i].value;
+                        let [min, max] = range.split("..").map(Number);
+                        let minRA = RA(min, anchorAgility);
+                        let maxRA = RA(max, anchorAgility);
+                        relativeAgilityInputs[i].value = (minRA === maxRA) ? maxRA : `${RA(max, anchorAgility)}..${RA(min, anchorAgility)}`;
+                    } else {
+                        relativeAgilityInputs[i].value = RA(Math.max(slotAgility, 255), anchorAgility);
+                    }
                 } else {
-                    relativeAgilityInputs[i].value = RA(slotAgility, anchorAgility);
+                    relativeAgilityInputs[i].value = RA(Math.max(slotAgility, 99), anchorAgility);
                 }
             }
         }
