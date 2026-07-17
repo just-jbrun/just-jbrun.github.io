@@ -308,7 +308,7 @@
             agility = Math.min(Math.max(1, agility), 99);
             anchorAgility = Math.min(Math.max(1, anchorAgility), 99);
 
-            return Math.max(1, Math.floor(anchorAgility * 5 / agility));
+            return Math.min(Math.max(1, Math.floor(anchorAgility * 5 / agility)), 255);
         }
 
         function updateAgility() {
