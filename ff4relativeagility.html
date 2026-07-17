@@ -390,10 +390,10 @@
                         let maxRA = RA(max, anchorAgility);
                         relativeAgilityInputs[i].value = (minRA === maxRA) ? maxRA : `${RA(max, anchorAgility)}..${RA(min, anchorAgility)}`;
                     } else {
-                        relativeAgilityInputs[i].value = RA(Math.max(slotAgility, 255), anchorAgility);
+                        relativeAgilityInputs[i].value = RA(Math.min(slotAgility, 255), anchorAgility);
                     }
                 } else {
-                    relativeAgilityInputs[i].value = RA(Math.max(slotAgility, 99), anchorAgility);
+                    relativeAgilityInputs[i].value = RA(Math.min(slotAgility, 99), anchorAgility);
                 }
             }
         }
