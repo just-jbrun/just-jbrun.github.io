@@ -1,0 +1,388 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container m-4">
+        <h1>Final Fantasy IV Relative Agility Calculator</h1>
+        <div style="display:flex; gap:30px; margin-bottom: 20px;">
+            Flags:
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="hero">
+                <label class="form-check-label" for="hero">Hero</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="vanilla">
+                <label class="form-check-label" for="vanilla">Vanilla Agility</label>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr class="table-primary">
+                    <th>
+                        <div style="display: flex; justify-content: space-between">
+                            <div>Character</div>
+                            <div>Hero?</div>
+                        </div>
+                    </th>
+                    <th>Agility</th>
+                    <th>Relative Agility</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="characterRow">
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 30px; justify-content: space-between;">
+                            <select class="form-select" id="characterSelect" onchange="updateAgility()"
+                                data-bs-toggle="popover" data-bs-trigger="hover"
+                                data-bs-content="Character name is only necessary if vanilla agility is on">
+                                <option value="" selected>Choose Character...</option>
+                                <option value="Cecil">Cecil</option>
+                                <option value="Cid">Cid</option>
+                                <option value="Edge">Edge</option>
+                                <option value="Edward">Edward</option>
+                                <option value="Fusoya">Fusoya</option>
+                                <option value="Kain">Kain</option>
+                                <option value="Palom">Palom</option>
+                                <option value="Porom">Porom</option>
+                                <option value="Rosa">Rosa</option>
+                                <option value="Rydia">Rydia</option>
+                                <option value="Tellah">Tellah</option>
+                                <option value="Yang">Yang</option>
+                            </select>
+                            <input class="form-check-input" type="radio" id="heroCheckbox"
+                                onchange="updateHero(this);updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="Hero selection is only necessary when the hero flag is on">
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
+                            readonly>
+                    </td>
+                </tr>
+                <tr id="characterRow">
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 30px; justify-content: space-between;">
+                            <select class="form-select" id="characterSelect" onchange="updateAgility()"
+                                data-bs-toggle="popover" data-bs-trigger="hover"
+                                data-bs-content="Character name is only necessary if vanilla agility is on">
+                                <option value="" selected>Choose Character...</option>
+                                <option value="Cecil">Cecil</option>
+                                <option value="Cid">Cid</option>
+                                <option value="Edge">Edge</option>
+                                <option value="Edward">Edward</option>
+                                <option value="Fusoya">Fusoya</option>
+                                <option value="Kain">Kain</option>
+                                <option value="Palom">Palom</option>
+                                <option value="Porom">Porom</option>
+                                <option value="Rosa">Rosa</option>
+                                <option value="Rydia">Rydia</option>
+                                <option value="Tellah">Tellah</option>
+                                <option value="Yang">Yang</option>
+                            </select>
+                            <input class="form-check-input" type="radio" id="heroCheckbox"
+                                onchange="updateHero(this);updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="Hero selection is only necessary when the hero flag is on">
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
+                            readonly>
+                    </td>
+                </tr>
+                <tr id="characterRow">
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 30px; justify-content: space-between;">
+                            <select class="form-select" id="characterSelect" onchange="updateAgility()"
+                                data-bs-toggle="popover" data-bs-trigger="hover"
+                                data-bs-content="Character name is only necessary if vanilla agility is on">
+                                <option value="" selected>Choose Character...</option>
+                                <option value="Cecil">Cecil</option>
+                                <option value="Cid">Cid</option>
+                                <option value="Edge">Edge</option>
+                                <option value="Edward">Edward</option>
+                                <option value="Fusoya">Fusoya</option>
+                                <option value="Kain">Kain</option>
+                                <option value="Palom">Palom</option>
+                                <option value="Porom">Porom</option>
+                                <option value="Rosa">Rosa</option>
+                                <option value="Rydia">Rydia</option>
+                                <option value="Tellah">Tellah</option>
+                                <option value="Yang">Yang</option>
+                            </select>
+                            <input class="form-check-input" type="radio" id="heroCheckbox"
+                                onchange="updateHero(this);updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="Hero selection is only necessary when the hero flag is on">
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
+                            readonly>
+                    </td>
+                </tr>
+                <tr id="characterRow">
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 30px; justify-content: space-between;">
+                            <select class="form-select" id="characterSelect" onchange="updateAgility()"
+                                data-bs-toggle="popover" data-bs-trigger="hover"
+                                data-bs-content="Character name is only necessary if vanilla agility is on">
+                                <option value="" selected>Choose Character...</option>
+                                <option value="Cecil">Cecil</option>
+                                <option value="Cid">Cid</option>
+                                <option value="Edge">Edge</option>
+                                <option value="Edward">Edward</option>
+                                <option value="Fusoya">Fusoya</option>
+                                <option value="Kain">Kain</option>
+                                <option value="Palom">Palom</option>
+                                <option value="Porom">Porom</option>
+                                <option value="Rosa">Rosa</option>
+                                <option value="Rydia">Rydia</option>
+                                <option value="Tellah">Tellah</option>
+                                <option value="Yang">Yang</option>
+                            </select>
+                            <input class="form-check-input" type="radio" id="heroCheckbox"
+                                onchange="updateHero(this);updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="Hero selection is only necessary when the hero flag is on">
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
+                            readonly>
+                    </td>
+                </tr>
+                <tr id="characterRow">
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 30px; justify-content: space-between;">
+                            <select class="form-select" id="characterSelect" onchange="updateAgility()"
+                                data-bs-toggle="popover" data-bs-trigger="hover"
+                                data-bs-content="Character name is only necessary if vanilla agility is on">
+                                <option value="" selected>Choose Character...</option>
+                                <option value="Cecil">Cecil</option>
+                                <option value="Cid">Cid</option>
+                                <option value="Edge">Edge</option>
+                                <option value="Edward">Edward</option>
+                                <option value="Fusoya">Fusoya</option>
+                                <option value="Kain">Kain</option>
+                                <option value="Palom">Palom</option>
+                                <option value="Porom">Porom</option>
+                                <option value="Rosa">Rosa</option>
+                                <option value="Rydia">Rydia</option>
+                                <option value="Tellah">Tellah</option>
+                                <option value="Yang">Yang</option>
+                            </select>
+                            <input class="form-check-input" type="radio" id="heroCheckbox"
+                                onchange="updateHero(this);updateAgility()" data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-content="Hero selection is only necessary when the hero flag is on">
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
+                            readonly>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot class="table-group-divider" style="border-top-color:var(--bs-gray-400)">
+                <tr>
+                    <td data-bs-toggle="popover" data-bs-trigger="hover"
+                        data-bs-content="Set back to default to use custom agility values">
+                        <div style="display: flex; align-items: center; gap: 30px; justify-content: space-between;">
+                            <select class="form-select" id="bossSelect" onchange="updateAgility()">
+                                <option value="" selected>Boss Location...</option>
+                                <option value="5">D. Mist (Mist Cave)</option>
+                                <option value="2..4">Officer/Soldiers (Kaipo Inn)</option>
+                                <option value="31">Octomamm (Waterfall)</option>
+                                <option value="5">Antlion (Antlion Cave)</option>
+                                <option value="7">MomBomb (Mt. Hobs)</option>
+                                <option value="6..9">Fabul Gauntlet (Fabul Castle)</option>
+                                <option value="8">Milon (Mt. Ordeals 1)</option>
+                                <option value="9">MilonZ (Mt. Ordeals 2)</option>
+                                <option value="5">D.Knight (Mt. Ordeals 3)</option>
+                                <option value="11..14">Guards (Baron Inn 1)</option>
+                                <option value="4..7">Karate (Baron Inn 2)</option>
+                                <option value="8">Baigan (Baron Castle 1)</option>
+                                <option value="15">Kainazzo (Baron Castle 2)</option>
+                                <option value="11">Dark Elf (Cave Magnes)</option>
+                                <option value="7">Magus Sisters (Tower of Zot 1)</option>
+                                <option value="18">Valvalis (Tower of Zot 2)</option>
+                                <option value="11">Calbrena (Dwarf Castle 1)</option>
+                                <option value="27">Golbez (Dwarf Castle 2)</option>
+                                <option value="27">Dr.Lugae (Tower of Bab-il)</option>
+                                <option value="18..21">Dark Imps (Super Cannon Room)</option>
+                                <option value="53">K/Q.Eblan (Hook Route 1)</option>
+                                <option value="38">Rubicant (Hook Route 2)</option>
+                                <option value="66">EvilWall (Sealed Cave)</option>
+                                <option value="66">Asura (Feymarch Queen)</option>
+                                <option value="53">Leviatan (Feymarch King)</option>
+                                <option value="43..46">Odin (Baron Castle Basement)</option>
+                                <option value="27">Bahamut (Cave Bahamut)</option>
+                                <option value="89">Elements (Giant 1)</option>
+                                <option value="38">CPU (Giant 2)</option>
+                                <option value="40..43">Pale Dim (Murasame Altar)</option>
+                                <option value="43..46">Wyvern (Crystal Sword Altar)</option>
+                                <option value="29..32">Plague (White Spear Altar)</option>
+                                <option value="30">D.Lunars (Ribbon Room)</option>
+                                <option value="38">Ogopogo (Masamune Altar)</option>
+                                <option value="69">Zeromus</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="agilityInput" value="" onchange="updateAgility()">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control bg-secondary-subtle" id="relativeAgilityInput" value=""
+                            readonly>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        const heroCheckbox = document.getElementById('hero');
+        const vanillaCheckbox = document.getElementById('vanilla');
+        heroCheckbox.addEventListener('change', () => { updateHero(); updateAgility(); });
+        vanillaCheckbox.addEventListener('change', () => { updateAgility(); });
+
+        const characterRows = document.querySelectorAll('#characterRow');
+        const characterSelects = document.querySelectorAll('#characterSelect');
+        const heroCheckboxes = document.querySelectorAll('#heroCheckbox');
+        const bossSelect = document.getElementById('bossSelect');
+        const agilityInputs = document.querySelectorAll('#agilityInput');
+        const relativeAgilityInputs = document.querySelectorAll('#relativeAgilityInput');
+
+        function updateHero(checkbox) {
+            // Uncheck all other hero checkboxes
+            heroCheckboxes.forEach(cb => {
+                if (cb !== checkbox || !heroCheckbox.checked) {
+                    cb.checked = false;
+                }
+            });
+        }
+
+        function RA(agility, anchorAgility) {
+            if (anchorAgility === 0) {
+                return 1;
+            }
+
+            agility = Math.max(1, agility);
+
+            return Math.max(1, Math.floor(anchorAgility * 5 / agility));
+        }
+
+        function updateAgility() {
+            // First update the agility value for the boss location
+            if (bossSelect.value !== "") {
+                const bossAgility = bossSelect.value;
+                agilityInputs[5].value = bossAgility;
+            }
+
+            let anchorIdx = null;
+            let firstFoundIdx = null;
+            [2, 0, 4, 1, 3].forEach(i => {
+                characterRows[i].classList.remove('table-danger');
+
+                if (anchorIdx !== null) {
+                    return;
+                }
+
+                const thisCharacter = characterSelects[i];
+                const thisAgility = parseInt(agilityInputs[i].value);
+
+                // If vanilla agility flag is on and this is Cecil, this is the anchor
+                if (vanillaCheckbox.checked && thisCharacter.value === "Cecil") {
+                    anchorIdx = i;
+                    return;
+                }
+
+                // If vanilla agility flag is off and this is the hero, this is the anchor
+                if (!vanillaCheckbox.checked && heroCheckbox.checked && heroCheckboxes[i].checked) {
+                    anchorIdx = i;
+                    return;
+                }
+
+                // Otherwise, the anchor is the highest priority slot that is filled
+                if ((thisCharacter.value !== "" || !isNaN(thisAgility)) && firstFoundIdx === null) {
+                    firstFoundIdx = i;
+                    return;
+                }
+            });
+
+            anchorIdx = anchorIdx ?? firstFoundIdx;
+
+            // Clear our calc
+            relativeAgilityInputs.forEach(input => {
+                input.value = "";
+            });
+
+            if (anchorIdx == null) {
+                // No anchor found
+                return;
+            }
+
+            characterRows[anchorIdx].classList.add('table-danger');
+
+            let anchorAgility = parseInt(agilityInputs[anchorIdx].value);
+            if (isNaN(anchorAgility)) {
+                return;
+            }
+
+            for (let i = 0; i < relativeAgilityInputs.length; i++) {
+                let slotAgility = parseInt(agilityInputs[i].value);
+
+                // Couldn't parse, just skip
+                if (isNaN(slotAgility)) {
+                    continue;
+                }
+
+                // Every valid agility slot is a minimum of 1
+                slotAgility = Math.max(1, slotAgility);
+
+                // If the anchor agility is 0, set every relative agility to 1
+                if (anchorAgility === 0) {
+                    relativeAgilityInputs[i].value = 1;
+                    continue;
+                }
+
+                if (i === 5 && agilityInputs[i].value.indexOf("..") !== -1) {
+                    let range = agilityInputs[i].value;
+                    let [min, max] = range.split("..").map(Number);
+                    let minRA = RA(min, anchorAgility);
+                    let maxRA = RA(max, anchorAgility);
+                    relativeAgilityInputs[i].value = (minRA === maxRA) ? maxRA : `${RA(max, anchorAgility)}..${RA(min, anchorAgility)}`;
+                } else {
+                    relativeAgilityInputs[i].value = RA(slotAgility, anchorAgility);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
